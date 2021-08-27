@@ -1,0 +1,1 @@
+<img src=" {{URL::asset('/img/logo.png') }}" style="width:200px" alt="logo">
