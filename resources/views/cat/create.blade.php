@@ -57,8 +57,11 @@
                     class="w-64 flex flex-col items-center px-4 py-6 text-gray-800 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-gray-300 hover:text-white">
                     <x-upload></x-upload>
                     <span class="mt-2 text-base leading-normal">Select a pic of your cat</span>
-                    <input type='file' name="file" class="hidden" />
+                    <input onchange="updateLabel()" id="picture" type='file' name="file" class="hidden" />
                 </label>
+            </div>
+            <div class="ml-4">
+                <label id="fileLabel" class="ml-8 text-gray-500 text-sm"></label>
             </div>
 
             <div class="mt-4">
@@ -70,11 +73,11 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <a href="{{ url()->previous() }}"
+                <a href="{{ url()->previous() }}" title="Back"
                     class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                     <x-back></x-back>
                 </a>
-                <x-button class="ml-4">
+                <x-button class="ml-4 hover:text-green-400" title="Save">
                     <x-add></x-add>
                 </x-button>
             </div>
@@ -111,5 +114,10 @@
     }
 
     mymap.on('click', onMapClick);
+
+    function updateLabel(){
+        var name = document.getElementById('picture').files[0].name;
+        document.getElementById('fileLabel').textContent = name;
+    }
 
 </script>

@@ -70,8 +70,11 @@
                     class="w-64 flex flex-col items-center px-4 py-6 text-gray-800 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-gray-300 hover:text-white">
                     <x-upload></x-upload>
                     <span class="mt-2 text-base leading-normal">Update your cat's photo</span>
-                    <input type='file' name="file" class="hidden" />
+                    <input onchange="updateLabel()" id="picture" type='file' name="file" class="hidden" />
                 </label>
+            </div>
+            <div class="ml-4">
+                <label id="fileLabel" class="ml-8 text-gray-500 text-sm">{{$cat->image->title}}</label>
             </div>
            
             <div class="mt-4">
@@ -87,8 +90,8 @@
                     class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                     <x-back></x-back>
                 </a>
-                <x-button class="ml-4" title="Save" form="edit">
-                    <x-pen></x-pen>
+                <x-button class="ml-4 hover:text-green-400" title="Save" form="edit">
+                    <x-add></x-add>
                 </x-button>
                 <button title="Delete" type="button"
                     class="ml-4 modal-open inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-red-200 disabled:opacity-25 transition ease-in-out duration-150">
@@ -229,5 +232,10 @@
 
     mymap.on('click', onMapClick);
 
+
+    function updateLabel(){
+        var name = document.getElementById('picture').files[0].name;
+        document.getElementById('fileLabel').textContent = name;
+    }
 </script>
 
